@@ -1,0 +1,13 @@
+function add(a, b) {
+  return a + b;
+}
+
+function subtract(a, b) {
+  return a - b;
+}
+
+console.log(`Addition of 14 and 8 is : ${add(14, 8)}`);
+console.log(`Subtraction of 10 and 7 is : ${subtract(10, 7)}`);
+
+// Export functions for testing
+module.exports = { add, subtract};
