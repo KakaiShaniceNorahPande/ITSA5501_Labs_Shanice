@@ -30,7 +30,7 @@ jobs: # jobs to be run as part of this workflow
         - name: Checkout repository code #step name
           uses: actions/checkout@v4 #uses actions/checkout action to checkout the code
 
-                  - name: Setup Node.js environment from matrix
+        - name: Setup Node.js environment from matrix
           run: echo "Using Node.JS version ${{ matrix.node-version }}" #prints the nodejs version being used
 
         - name: Set up Node.js ${{ matrix.node-version }} #step name
@@ -42,3 +42,4 @@ jobs: # jobs to be run as part of this workflow
           run: npm install #installs the dependencies listed in package.json
 
         - name: Run tests #step name
+          run: npm test #runs the tests using npm test command
