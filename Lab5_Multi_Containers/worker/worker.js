@@ -16,7 +16,8 @@ const jobWorker = new Worker(
     const { name, email, subject, description } = job.data;
 
     // Simulate time to "resolve" the ticket
-    await sleep(500 + Math.random() * 10000);
+    // await sleep(500 + Math.random() * 10000);
+    await sleep(10000);
 
     // Simulate occasional failures (for demo)
     if (Math.random() < 0.05) {
