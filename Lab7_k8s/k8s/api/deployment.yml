@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: api
-          image: api:latest   
+          image: shanicekakai/api:latest   
           imagePullPolicy: Always
           env:
             - name: PORT
