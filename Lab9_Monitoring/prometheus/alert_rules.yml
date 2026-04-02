@@ -1,0 +1,33 @@
+groups:
+  - name: instance-down
+    rules:
+      - alert: InstanceDown
+        expr: up{job = "node-exporter"} == 0
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Instance {{ $labels.instance }} down"
+          description: "{{ $labels.instance }} of job {{ $labels.job }} has been down for more than 1 minute."
+
+  - name: high-cpu-usage
+    rules:
+      - alert: HighCPUUsage
+        expr: 100 - (avg by(instance) (rate(node_cpu_seconds_total{mode!="idle"}[1m])) * 100) > 60
+        for: 1m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High CPU usage on {{ $labels.instance }}"
+          description: "CPU usage on instance {{ $labels.instance }} is above 60% for more than 1 minute."
+
+  - name: high-memory-usage
+    rules:
+      - alert: HighMemoryUsage
+        expr: (node_memory_MemTotal_bytes - node_memory_MemAvailable_bytes) / node_memory_MemTotal_bytes * 100 > 70
+        for: 1m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High Memory usage on {{ $labels.instance }}"
+          description: "Memory usage on instance {{ $labels.instance }} is above 70% for more than 1 minute."
